@@ -7,7 +7,15 @@ export const useVerification = () => {
      const [modal, setModal] = useState(false);
      const [text, setText] = useState('');
 
+     const handleClose = () => {
+          setTimeout(() => {
+               setModal(false)
+          }, 1000)
+     };
+
      const handleInfo = () => {
+          handleClose()
+
           switch (true) {
 
                case login.current.value.length < 1 && password.current.value.length < 1:
@@ -19,6 +27,8 @@ export const useVerification = () => {
                     password.current.value === user.password:
                     setText("Добро пожаловать")
                     setModal(true);
+                    localStorage.setItem('userStatus', JSON.stringify(true))
+                    setTimeout(() => { location.reload() }, 1001)
                     break;
 
                case login.current.value !== user.login ||
@@ -32,6 +42,10 @@ export const useVerification = () => {
                     setModal(true);
                     break;
           }
+
+
+
+
      };
 
      return { login, password, handleInfo, modal, setModal, text }

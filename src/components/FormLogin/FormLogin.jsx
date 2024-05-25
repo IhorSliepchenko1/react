@@ -41,11 +41,11 @@ const FormLogin = () => {
             </div>
           </div>
           <div className={cl.btn}>
-            <MyButton onClick={handleInfo} />
+            <MyButton onClick={handleInfo} text={`Войти`} />
           </div>
         </form>
       </div>
-      ({modal && <Modal setModal={setModal} text={text} />})
+      ({modal && <Modal text={text} />})
     </>
   );
 };

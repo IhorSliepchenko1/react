@@ -1,10 +1,7 @@
+import FormLogin from "../components/FormLogin/FormLogin";
 
 const Login = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <FormLogin />;
+};
 
-export default Login
+export default Login;

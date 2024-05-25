@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import cl from "./Modal.module.scss";
 
-const Modal = ({ setModal, text }) => {
+const Modal = ({ text }) => {
   const delay = 1000;
   const interval = delay / 100;
   //   const [modal, setModal] = useState(false);
@@ -13,7 +13,6 @@ const Modal = ({ setModal, text }) => {
         const newProgress = prev + interval;
 
         if (newProgress >= delay) {
-          setModal(false);
           clearInterval(loading);
         }
 
