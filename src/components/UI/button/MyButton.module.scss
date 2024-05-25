@@ -1,0 +1,16 @@
+.btn_Login {
+  border: 2px solid teal;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 25px;
+  border-radius: 8px;
+
+  background-color: #b4d044;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c0ec21;
+    border: 2px solid rgb(5, 194, 194);
+  }
+}
