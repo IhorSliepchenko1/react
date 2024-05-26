@@ -37,20 +37,33 @@ const Main = () => {
   return (
     <div>
       <NavBar />
+      <div className={cl.container}>
+        <div className={cl.header}>
+          <h2 className={cl.numPage}>
+            Page # {page} / {count / limit}
+          </h2>
 
-      <div className={cl.containerPosts}>
-        {data.map((item) => (
-          <Post
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            email={item.email}
-            body={item.body}
-          />
-        ))}
+          <select name="count">
+            <option value="">Count posts</option>
+            <option value="50">50</option>
+            <option value="30">30</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+
+        <div className={cl.containerPosts}>
+          {data.map((item) => (
+            <Post
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              email={item.email}
+              body={item.body}
+            />
+          ))}
+        </div>
+        <Pagination setPage={setPage} count={count} limit={limit} />
       </div>
-
-      <Pagination setPage={setPage} count={count} limit={limit} />
     </div>
   );
 };

@@ -12,23 +12,14 @@ const NavBar = () => {
     <nav className="nav">
       <ul className="ul">
         <li className="li">
-          <Link to="/">useCallback</Link>
+          <a href="#pagination">Navigate page</a>
         </li>
         <li className="li">
-          <Link to="/">useCallback</Link>
-        </li>
-        <li className="li">
-          <Link to="/">useCallback</Link>
-        </li>
-        <li className="li">
-          <Link to="/">useCallback</Link>
-        </li>
-        <li className="li">
-          <Link to="/">useCallback</Link>
+          <Link to="/">Search post</Link>
         </li>
       </ul>
 
-      <MyButton text={`Выйти`} onClick={logout} />
+      <MyButton text={`Logout`} onClick={logout} />
     </nav>
   );
 };

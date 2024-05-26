@@ -65,7 +65,7 @@ const Pagination = ({ setPage, count, limit }) => {
   const steps = step();
 
   return (
-    <div className="mainSlot">
+    <div className="mainSlot" id="pagination">
       <PaginationButton
         func={activeBtn}
         item={1}

@@ -43,7 +43,7 @@ const FormLogin = () => {
             </div>
           </div>
           <div className={cl.btn}>
-            <MyButton onClick={handleInfo} text={`Войти`} />
+            <MyButton onClick={handleInfo} text={`Login`} />
           </div>
         </form>
       </div>

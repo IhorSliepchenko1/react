@@ -1,5 +1,22 @@
+.container {
+  max-width: 1500px;
+  width: 100%;
+  margin-inline: auto;
+}
+
 .containerPosts {
   display: grid;
   gap: 5px;
   margin-top: 20px;
+}
+
+.numPage {
+  color: white;
+}
+
+.header {
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

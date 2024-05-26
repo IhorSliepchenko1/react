@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../page/Login";
 import Main from "../page/Main/Main";
+import Loader from "../components/UI/Loader/Loader";
+import { useEffect, useState } from "react";
 
 const privateRoutes = [
   { path: "/", element: <Main /> },
@@ -9,6 +11,19 @@ const privateRoutes = [
 ];
 
 const PrivateComponent = () => {
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoader(true);
+    }, 1500);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (!loader) {
+    return <Loader />;
+  }
   return (
     <Routes>
       {privateRoutes.map((item, index) => (
