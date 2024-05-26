@@ -1,0 +1,40 @@
+.btnContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.mainSlot {
+  display: flex;
+  margin: 30px 0 10px 0;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn {
+  width: 25px;
+  height: 30px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.75);
+  transition: 0.15s ease-in-out;
+
+  &:hover {
+    background-color: teal;
+    box-shadow: 0px 0px 5px 1px rgba(0, 255, 238, 0.89);
+  }
+}
+
+.btnEdge {
+  width: 18px;
+  height: 30px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 2px;
+}
+
+.active-button {
+  background-color: teal;
+  box-shadow: 0px 0px 5px 1px rgba(0, 255, 238, 0.89);
+}

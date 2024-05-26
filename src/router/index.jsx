@@ -1,9 +1,10 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../page/Login";
-import Main from "../page/Main";
+import Main from "../page/Main/Main";
 
 const privateRoutes = [
   { path: "/", element: <Main /> },
+  { path: "/call", element: <h2>Hello H2</h2> },
   { path: "*", element: <Navigate to="/" /> },
 ];
 

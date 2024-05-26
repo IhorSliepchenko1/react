@@ -1,0 +1,37 @@
+.post-wrapper {
+  max-width: 1500px;
+  width: 100%;
+  margin-inline: auto;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px white;
+
+  &__number {
+    background-color: black;
+    color: white;
+    font-size: 10px;
+    padding-left: 10px;
+  }
+
+  &__info-slot {
+    padding: 5px;
+  }
+
+  &__theme {
+    font-size: 15px;
+    display: grid;
+    justify-content: center;
+  }
+
+  &__mail {
+    font-size: 14px;
+  }
+
+  &__body {
+    border: 1px solid grey;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgb(216, 216, 216);
+    font-size: 14px;
+    font-weight: 300;
+  }
+}

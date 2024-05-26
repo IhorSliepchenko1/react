@@ -1,6 +1,6 @@
 import MyInput from "../UI/input/MyInput";
 import cl from "./FormLogin.module.scss";
-import MyButton from "./../UI/button/MyButton";
+import MyButton from "../UI/button/MyButton";
 import CloseEye from "./assets/CloseEye";
 import OpenEye from "./assets/OpenEye";
 import { useState } from "react";
@@ -31,13 +31,15 @@ const FormLogin = () => {
             <div className={cl.containerPass}>
               <MyInput
                 type={open ? `text` : `password`}
+                inpPassClass={cl.inpPassClass}
                 labelText={`Password`}
                 reference={password}
+                children={
+                  <span className={cl.icon} onClick={handleClick}>
+                    {open ? <CloseEye /> : <OpenEye />}
+                  </span>
+                }
               />
-
-              <span className={cl.icon} onClick={handleClick}>
-                {open ? <CloseEye /> : <OpenEye />}
-              </span>
             </div>
           </div>
           <div className={cl.btn}>
@@ -45,7 +47,7 @@ const FormLogin = () => {
           </div>
         </form>
       </div>
-      ({modal && <Modal text={text} />})
+      {modal && <Modal text={text} />}
     </>
   );
 };

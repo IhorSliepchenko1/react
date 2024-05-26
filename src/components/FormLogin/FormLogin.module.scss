@@ -31,7 +31,15 @@
 }
 
 .icon {
-  margin-bottom: 3px;
   cursor: pointer;
-  margin-left: 3px;
+  display: flex;
+  align-items: center;
+}
+
+.inpPassClass {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  width: 185px;
 }
