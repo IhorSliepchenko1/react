@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import "./Pagination.scss";
+import { useEffect, useState } from "react";
 import { getPagesArray } from "../../../utils/pages";
 import PaginationButton from "../button/PaginationButton";
-import "./Pagination.scss";
+import { useRefCreate } from "../../../hook/useRefCreate";
 
 const Pagination = ({ setPage, count, limit }) => {
   const countBtnNext = getPagesArray(count, limit);
@@ -9,13 +10,9 @@ const Pagination = ({ setPage, count, limit }) => {
   const [stepPage, setStepPage] = useState(null);
   const [item, setItem] = useState(1);
 
-  const nextRef = useRef(null);
-  const finishRef = useRef(null);
-
-  const prevRef = useRef(null);
-  const startRef = useRef(null);
-
+  const { start, end, disStatus } = useRefCreate(4);
   const btnAll = document.querySelectorAll(`.btn`);
+  const activeButton = document.querySelector(`.active-button`);
 
   const activeBtn = (item) => {
     btnAll.forEach((el) => {
@@ -28,57 +25,31 @@ const Pagination = ({ setPage, count, limit }) => {
   };
 
   useEffect(() => {
-    const activeButton = document.querySelectorAll(`.active-button`);
-
-    setStepPage(activeButton[0]);
-
-    const arrRefEnd = [nextRef, finishRef];
-    const arrRefStart = [prevRef, startRef];
-
-    const disStatus = (arr, status) => {
-      arr.map((item) => (item.current.disabled = status));
-    };
-
-    item === countBtnNext.length
-      ? disStatus(arrRefEnd, true)
-      : disStatus(arrRefEnd, false);
-
-    item === 1 ? disStatus(arrRefStart, true) : disStatus(arrRefStart, false);
+    setStepPage(activeButton);
+    disStatus(start, item === countBtnNext.length ? true : false);
+    disStatus(end, item === 1 ? true : false);
   }, [countBtnNext]);
 
-  const step = () => {
-    const stepObj = {
-      next() {
-        let indexActive = +stepPage.innerText;
-        btnAll[indexActive].click();
-      },
-
-      prev() {
-        let indexActive = +stepPage.innerText;
-        btnAll[indexActive - 2].click();
-      },
-    };
-
-    return stepObj;
+  const step = (step) => {
+    let indexActive = +stepPage.innerText;
+    btnAll[indexActive - step].click();
   };
-
-  const steps = step();
 
   return (
     <div className="mainSlot" id="pagination">
       <PaginationButton
         func={activeBtn}
         item={1}
-        classname={"btnEdge"}
-        refEl={startRef}
+        classname={"btnEdge _0"}
+        refEl={end[0]}
         text={"<<"}
       />
 
       <PaginationButton
-        func={() => steps.prev()}
+        func={() => step(2)}
         text={"<"}
-        classname={"btnEdge"}
-        refEl={prevRef}
+        classname={"btnEdge _2"}
+        refEl={end[1]}
       />
 
       <div className="btnContainer">
@@ -94,18 +65,18 @@ const Pagination = ({ setPage, count, limit }) => {
       </div>
 
       <PaginationButton
-        func={() => steps.next()}
+        func={() => step(0)}
         text={">"}
-        classname={"btnEdge"}
-        refEl={nextRef}
+        classname={"btnEdge _1"}
+        refEl={start[0]}
       />
 
       <PaginationButton
         func={activeBtn}
         item={countBtnNext.length}
         text={">>"}
-        classname={"btnEdge"}
-        refEl={finishRef}
+        classname={"btnEdge _3"}
+        refEl={start[1]}
       />
     </div>
   );

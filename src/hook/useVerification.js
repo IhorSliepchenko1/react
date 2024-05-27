@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import { user } from "../components/data/loginData";
 
-export const useVerification = () => {
+export const useVerification = (user) => {
      const login = useRef(null);
      const password = useRef(null);
+
      const [modal, setModal] = useState(false);
      const [text, setText] = useState('');
 
@@ -42,10 +42,6 @@ export const useVerification = () => {
                     setModal(true);
                     break;
           }
-
-
-
-
      };
 
      return { login, password, handleInfo, modal, setModal, text }

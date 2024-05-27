@@ -6,11 +6,11 @@ import OpenEye from "./assets/OpenEye";
 import { useState } from "react";
 import { useVerification } from "../../hook/useVerification";
 import Modal from "../UI/Modal/Modal";
+import { user } from "../data/loginData";
 
 const FormLogin = () => {
   const [open, setOpen] = useState(false);
-  const { login, password, handleInfo, modal, setModal, text } =
-    useVerification();
+  const { login, password, handleInfo, modal, text } = useVerification(user);
 
   const handleClick = () => {
     setOpen(!open);

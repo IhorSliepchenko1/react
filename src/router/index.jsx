@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "../page/Login";
+import Login from "../page/Login/Login";
 import Main from "../page/Main/Main";
 import Loader from "../components/UI/Loader/Loader";
 import { useEffect, useState } from "react";
