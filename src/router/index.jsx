@@ -3,10 +3,11 @@ import Login from "../page/Login/Login";
 import Main from "../page/Main/Main";
 import Loader from "../components/UI/Loader/Loader";
 import { useEffect, useState } from "react";
+import NavBar from "../components/NavBar/NavBar";
 
 const privateRoutes = [
   { path: "/", element: <Main /> },
-  { path: "/call", element: <h2>Hello H2</h2> },
+  { path: "/converter-files", element: <h2>Comming soon</h2> },
   { path: "*", element: <Navigate to="/" /> },
 ];
 
@@ -25,11 +26,15 @@ const PrivateComponent = () => {
     return <Loader />;
   }
   return (
-    <Routes>
-      {privateRoutes.map((item, index) => (
-        <Route key={index} path={item.path} element={item.element} />
-      ))}
-    </Routes>
+    <div>
+      <NavBar />
+
+      <Routes>
+        {privateRoutes.map((item, index) => (
+          <Route key={index} path={item.path} element={item.element} />
+        ))}
+      </Routes>
+    </div>
   );
 };
 

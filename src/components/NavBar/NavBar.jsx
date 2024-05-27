@@ -12,10 +12,10 @@ const NavBar = () => {
     <nav className="nav">
       <ul className="ul">
         <li className="li">
-          <a href="#pagination">Navigate page</a>
+          <Link to="/">Posts</Link>
         </li>
         <li className="li">
-          <Link to="/">Search post</Link>
+          <Link to="/converter-files">Converter Files</Link>
         </li>
       </ul>
 

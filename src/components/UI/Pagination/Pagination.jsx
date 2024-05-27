@@ -24,6 +24,15 @@ const Pagination = ({ setPage, count, limit }) => {
     setPage(item);
   };
 
+  if (countBtnNext.length > 10) {
+    const newCountBtnNext = [];
+
+    countBtnNext.map((el)=>{
+      
+    })
+
+  }
+
   useEffect(() => {
     setStepPage(activeButton);
     disStatus(start, item === countBtnNext.length ? true : false);
@@ -53,12 +62,12 @@ const Pagination = ({ setPage, count, limit }) => {
       />
 
       <div className="btnContainer">
-        {countBtnNext.map((item) => (
+        {countBtnNext.map((item, index) => (
           <PaginationButton
             func={activeBtn}
             item={item}
             text={item}
-            classname={item === 1 ? "btn active-button" : "btn"}
+            classname={index === 0 ? "btn active-button" : "btn"}
             key={item}
           />
         ))}
