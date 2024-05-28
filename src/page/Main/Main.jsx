@@ -2,8 +2,6 @@ import cl from "./Main.module.scss";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { selectData } from "../../components/data/selectData";
 import { PostService } from "../../API/PostService.js";
-
-import NavBar from "../../components/NavBar/NavBar";
 import Post from "../../components/UI/Post/Post";
 import Pagination from "../../components/UI/Pagination/Pagination";
 import MySelect from "../../components/UI/select/MySelect";
@@ -38,7 +36,6 @@ const Main = () => {
 
   return (
     <div>
-      {/* <NavBar /> */}
       <div className={cl.container}>
         <div className={cl.header}>
           <h2 className={cl.numPage}>

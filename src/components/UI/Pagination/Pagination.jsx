@@ -1,12 +1,12 @@
 import "./Pagination.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getPagesArray } from "../../../utils/pages";
 import PaginationButton from "../button/PaginationButton";
 import { useRefCreate } from "../../../hook/useRefCreate";
+import { useActiveButton } from "../../../hook/useActiveButton";
 
 const Pagination = ({ setPage, count, limit }) => {
   const countBtnNext = getPagesArray(count, limit);
-
   const [stepPage, setStepPage] = useState(null);
   const [item, setItem] = useState(1);
 
@@ -14,24 +14,7 @@ const Pagination = ({ setPage, count, limit }) => {
   const btnAll = document.querySelectorAll(`.btn`);
   const activeButton = document.querySelector(`.active-button`);
 
-  const activeBtn = (item) => {
-    btnAll.forEach((el) => {
-      el.classList.remove(`active-button`);
-    });
-    btnAll[item - 1].classList.add(`active-button`);
-
-    setItem(item);
-    setPage(item);
-  };
-
-  if (countBtnNext.length > 10) {
-    const newCountBtnNext = [];
-
-    countBtnNext.map((el)=>{
-      
-    })
-
-  }
+  const { activeBtn } = useActiveButton({ setItem, setPage, btnAll });
 
   useEffect(() => {
     setStepPage(activeButton);
@@ -47,15 +30,14 @@ const Pagination = ({ setPage, count, limit }) => {
   return (
     <div className="mainSlot" id="pagination">
       <PaginationButton
-        func={activeBtn}
-        item={1}
+        onClick={() => activeBtn(1)}
         classname={"btnEdge _0"}
         refEl={end[0]}
         text={"<<"}
       />
 
       <PaginationButton
-        func={() => step(2)}
+        onClick={() => step(2)}
         text={"<"}
         classname={"btnEdge _2"}
         refEl={end[1]}
@@ -64,8 +46,7 @@ const Pagination = ({ setPage, count, limit }) => {
       <div className="btnContainer">
         {countBtnNext.map((item, index) => (
           <PaginationButton
-            func={activeBtn}
-            item={item}
+            onClick={(e) => activeBtn(+e.target.innerText)}
             text={item}
             classname={index === 0 ? "btn active-button" : "btn"}
             key={item}
@@ -74,15 +55,14 @@ const Pagination = ({ setPage, count, limit }) => {
       </div>
 
       <PaginationButton
-        func={() => step(0)}
+        onClick={() => step(0)}
         text={">"}
         classname={"btnEdge _1"}
         refEl={start[0]}
       />
 
       <PaginationButton
-        func={activeBtn}
-        item={countBtnNext.length}
+        onClick={() => activeBtn(countBtnNext.length)}
         text={">>"}
         classname={"btnEdge _3"}
         refEl={start[1]}
