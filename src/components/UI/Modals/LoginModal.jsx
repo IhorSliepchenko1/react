@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import cl from "./Modal.module.scss";
+import cl from "./LoginModal.module.scss";
 
-const Modal = ({ text }) => {
+const LoginModal = ({ text }) => {
   const delay = 1000;
   const interval = delay / 100;
   const [progress, setProgress] = useState(0);
@@ -13,7 +13,6 @@ const Modal = ({ text }) => {
       if (progress >= 100) {
         clearInterval(lineTime);
       }
-      
     }, interval);
     return () => {
       clearInterval(lineTime);
@@ -30,4 +29,4 @@ const Modal = ({ text }) => {
   );
 };
 
-export default Modal;
+export default LoginModal;

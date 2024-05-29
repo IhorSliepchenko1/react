@@ -1,12 +1,12 @@
-import MyInput from "../UI/input/MyInput";
+import MyInput from "../UI/input/inputLogin/MyInput";
 import cl from "./FormLogin.module.scss";
 import MyButton from "../UI/button/MyButton";
 import CloseEye from "./assets/CloseEye";
 import OpenEye from "./assets/OpenEye";
 import { useState } from "react";
 import { useVerification } from "../../hook/useVerification";
-import Modal from "../UI/Modal/Modal";
 import { user } from "../data/loginData";
+import LoginModal from "../UI/Modals/LoginModal";
 
 const FormLogin = () => {
   const [open, setOpen] = useState(false);
@@ -47,7 +47,7 @@ const FormLogin = () => {
           </div>
         </form>
       </div>
-      {modal && <Modal text={text} />}
+      {modal && <LoginModal text={text} />}
     </>
   );
 };

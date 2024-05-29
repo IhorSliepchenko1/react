@@ -1,32 +1,5 @@
-* {
-  font-family: "Oswald", sans-serif;
-}
+@import "./styles/base";
+@import "./styles/reset";
+@import "./styles/scrollbar";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
-img {
-  max-width: 100%;
-}
-a {
-  text-decoration: none;
-}
-li {
-  list-style: none;
-}
-
-body {
-  background-color: #242424;
-}
-
-.loader {
-  width: 180px;
-  height: 180px;
-  margin-inline: auto;
-  margin-top: 200px;
-}

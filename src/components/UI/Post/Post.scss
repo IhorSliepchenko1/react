@@ -12,6 +12,12 @@
     padding-left: 10px;
   }
 
+  &__number-text {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
   &__info-slot {
     padding: 5px;
   }

@@ -12,6 +12,7 @@
 
 .numPage {
   color: white;
+  width: 150px;
 }
 
 .header {
@@ -19,4 +20,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.searcIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.activeFocus {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  padding: 3px;
+  color: white;
+  border: 1px solid teal;
 }
