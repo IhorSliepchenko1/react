@@ -38,3 +38,17 @@
   background-color: teal;
   box-shadow: 0px 0px 5px 1px rgba(0, 255, 238, 0.89);
 }
+
+.alternativePagination {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.numb {
+  width: 20px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}

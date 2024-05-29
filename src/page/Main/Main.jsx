@@ -64,7 +64,12 @@ const Main = () => {
           {limit === 0 ? (
             <></>
           ) : (
-            <Pagination setPage={setPage} count={count} limit={limit} />
+            <Pagination
+              setPage={setPage}
+              count={count}
+              limit={limit}
+              page={page}
+            />
           )}
         </div>
       </div>
