@@ -44,6 +44,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(121, 121, 121, 0.89);
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 10px;
+  box-shadow: 0px 0px 2px 1px rgba(121, 121, 121, 0.89);
 }
 
 .numb {
@@ -51,4 +56,10 @@
   display: grid;
   align-items: center;
   justify-content: center;
+}
+
+.btnEdge {
+  &:focus {
+    box-shadow: 0px 0px 2px 1px rgba(0, 255, 238, 0.89);
+  }
 }

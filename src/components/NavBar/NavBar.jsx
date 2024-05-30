@@ -15,7 +15,7 @@ const NavBar = () => {
           <Link to="/">Posts</Link>
         </li>
         <li className="li">
-          <Link to="/converter-files">Converter Files</Link>
+          <Link to="/user">Progress</Link>
         </li>
       </ul>
 

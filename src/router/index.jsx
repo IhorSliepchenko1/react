@@ -7,7 +7,7 @@ import NavBar from "../components/NavBar/NavBar";
 
 const privateRoutes = [
   { path: "/", element: <Main /> },
-  { path: "/converter-files", element: <h2>Comming soon</h2> },
+  { path: "/user", element: <h2>Comming soon</h2> },
   { path: "*", element: <Navigate to="/" /> },
 ];
 

@@ -1,14 +1,19 @@
-import cl from "./MeSelect.module.scss";
-
-const MySelect = ({ data, selectRef, selectChange }) => {
+const MySelect = (props) => {
   return (
-    <select className={cl.select} ref={selectRef} onChange={selectChange}>
-      {data.map((item, index) => (
-        <option value={item.value} key={index}>
-          {item.text}
-        </option>
-      ))}
-    </select>
+    <div className={props.selectContainer}>
+      <span>{props.text}</span>
+      <select
+        className={props.classname}
+        ref={props.selectRef}
+        onChange={props.selectChange}
+      >
+        {props.data.map((item, index) => (
+          <option value={item.value} key={index}>
+            {item.text}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

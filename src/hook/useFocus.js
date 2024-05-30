@@ -1,26 +1,19 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 
-export const useFocus = () => {
-     const clickRef = useRef(null)
+export const useFocus = (clickRef) => {
 
-     const handleClickOutside = (event) => {
-          if (clickRef.current && !clickRef.current.contains(event.target)) {
-               clickRef.current.style = `box-shadow: 0`;
-          }
+     const handleClicFocus = (event) => {
+          clickRef.current.style =
+               clickRef.current.contains(event.target)
+                    ? `box-shadow: 2px 2px 15px 3px rgba(21, 66, 31, 1)`
+                    : clickRef.current.style = `box-shadow: 0`;
      };
 
      useEffect(() => {
-          document.addEventListener("click", handleClickOutside, true);
+          document.addEventListener("click", handleClicFocus, true);
           return () => {
-               document.removeEventListener("click", handleClickOutside, true);
+               document.removeEventListener("click", handleClicFocus, true);
           };
      }, []);
 
-     const handleClickInside = (shadow) => {
-          if (clickRef.current) {
-               clickRef.current.style = `box-shadow: ${shadow}`;
-          }
-     };
-
-     return { handleClickInside, clickRef }
 }
