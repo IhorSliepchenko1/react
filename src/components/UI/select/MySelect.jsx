@@ -8,8 +8,17 @@ const MySelect = (props) => {
         onChange={props.selectChange}
       >
         {props.data.map((item, index) => (
-          <option value={item.value} key={index}>
-            {item.text}
+          <option
+            value={
+              +item.text === +item.value
+                ? item.value
+                : `${item.text} ${item.value}`
+            }
+            key={index}
+          >
+            {+item.text === +item.value
+              ? item.text
+              : `${item.text} ${item.value}`}
           </option>
         ))}
       </select>

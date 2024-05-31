@@ -9,9 +9,13 @@ export const selectData = [
      ],
 
      [
-          { value: "-", text: "-" },
-          { value: "name", text: "name" },
-          { value: "email", text: "email" },
+          { value: "a-z", text: "id" },
+          { value: "z-a", text: "id" },
+          { value: "a-z", text: "name" },
+          { value: "z-a", text: "name" },
+          { value: "a-z", text: "email" },
+          { value: "z-a", text: "email" },
      ]
 
 ];
+
