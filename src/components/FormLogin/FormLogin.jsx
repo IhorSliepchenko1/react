@@ -1,12 +1,12 @@
 import MyInput from "../UI/input/inputLogin/MyInput";
 import cl from "./FormLogin.module.scss";
-import MyButton from "../UI/button/MyButton";
+import MyButton from "../UI/button/LoginButton/MyButton";
 import CloseEye from "./assets/CloseEye";
 import OpenEye from "./assets/OpenEye";
 import { useState } from "react";
 import { useVerification } from "../../hook/useVerification";
 import { user } from "../data/loginData";
-import LoginModal from "../UI/Modals/LoginModal";
+import LoginModal from "../UI/Modals/LoginModal/LoginModal";
 
 const FormLogin = () => {
   const [open, setOpen] = useState(false);

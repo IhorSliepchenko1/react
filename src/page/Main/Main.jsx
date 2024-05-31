@@ -1,16 +1,17 @@
 import cl from "./Main.module.scss";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useContext } from "react";
 import { selectData } from "../../components/data/selectData";
 import { PostService } from "../../API/PostService.js";
-import Post from "../../components/UI/Post/Post";
 import Pagination from "../../components/UI/Pagination/Pagination";
 import Select from "./../../components/UI/select/MySelect.jsx";
-import searcIcon from "./../../assets/search.png";
-import cross from "./../../assets/cross.png";
-import MyInput from "../../components/UI/input/inputSearch/MyInput.jsx";
 import { useFocus } from "../../hook/useFocus.js";
-import Image from "../../components/UI/img/Image.jsx";
 import { useSortedPosts } from "./../../hook/useSorted";
+import PostLoading from "../../components/UI/PostLoading/PostLoading.jsx";
+import SearchInput from "../../components/UI/SearchInput/SearchInput.jsx";
+import PostButton from "../../components/UI/button/PostButton/PostButton.jsx";
+import PostModal from "../../components/UI/Modals/PostModal/PostModal.jsx";
+// import ProviderData from "../../context/ProviderData/ProviderData.js";
+// import DataContext from "../../context/DataContext.js";
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -18,12 +19,13 @@ const Main = () => {
   const [limit, setLimit] = useState(50);
   const [count, setCount] = useState(0);
   const [searchValue, setSearchValue] = useState(0);
-  const [ceilPage, setCeilPage] = useState(10);
-
+  const [loader, setLoader] = useState(false);
   const { sortedPosts } = useSortedPosts(setData);
+  const [modal, setModal] = useState(false);
 
+  // const valueContext = useContext(DataContext);
   const selectRef = useRef(null);
-  const selectRefSort = useRef("");
+  const selectRefSort = useRef(null);
   const inputRef = useRef(null);
   const clickRef = useRef(null);
   const focus = useFocus(clickRef);
@@ -34,7 +36,6 @@ const Main = () => {
 
   const fetchDataLimit = async () => {
     const result = await PostService.getPosts(page, limit);
-
     setData(result[0]);
     setCount(+result[1]);
 
@@ -69,8 +70,13 @@ const Main = () => {
   };
 
   useEffect(() => {
-    limit > 0 ? fetchDataLimit() : fetchDataAll();
-    selectRefSort.current.value = selectRefSort.current[0].label;
+    setLoader(true);
+
+    setTimeout(() => {
+      limit > 0 ? fetchDataLimit() : fetchDataAll();
+      selectRefSort.current.value = selectRefSort.current[0].label;
+      setLoader(false);
+    }, 1000);
   }, [page, limit]);
 
   const promiseResultFunc = async () => {
@@ -90,41 +96,28 @@ const Main = () => {
   }, [fetchDataSearchUser]);
 
   useEffect(() => {
-    const result = setTimeout(() => {
-      setCeilPage(Math.ceil(count / limit));
-    }, 200);
-
-    return () => clearTimeout(result);
-  }, [count, limit]);
+    modal
+      ? document.body.classList.add(`no-scrol`)
+      : document.body.classList.remove(`no-scrol`);
+  }, [modal]);
 
   return (
-    <div>
+    <div className={cl.wrapper}>
+      {modal && (
+        <PostModal onclick={() => setModal((prev) => !prev)} data={data} />
+      )}
       <div className={cl.container}>
         <div className={cl.header}>
-          <h2 className={cl.numPage}>
-            Page #
-            <span className={cl.spanNumPage}>
-              {ceilPage !== Infinity
-                ? `${page} / ${ceilPage}`
-                : `${page} / ${page}`}
-            </span>
-          </h2>
-
-          <div ref={clickRef} className={cl.activeFocus}>
-            <MyInput
-              type={`text`}
-              placeholder={`search by user`}
+          <div className={cl.l_headerContainer}>
+            <SearchInput
+              searchValue={searchValue}
+              fetchDataSearchUser={fetchDataSearchUser}
               inputRef={inputRef}
-              oninput={() => fetchDataSearchUser(inputRef.current.value)}
+              refreshData={refreshData}
+              clickRef={clickRef}
             />
 
-            <Image
-              image={searchValue > 0 ? cross : searcIcon}
-              onclick={() =>
-                searchValue > 0 ? refreshData() : console.log("click user icon")
-              }
-              classname={cl.searcIcon}
-            />
+            <PostButton setModal={setModal} data={data} />
           </div>
 
           <div className={cl.selectMain}>
@@ -153,29 +146,23 @@ const Main = () => {
           </div>
         </div>
 
-        <div className={cl.containerPosts}>
-          {data.map((item) => (
-            <Post
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              email={item.email}
-              body={item.body}
-            />
-          ))}
-        </div>
-        <div style={{ marginTop: 20 }}>
-          {limit === 0 ? (
-            <></>
-          ) : (
-            <Pagination
-              setPage={setPage}
-              count={count}
-              limit={limit}
-              page={page}
-            />
-          )}
-        </div>
+        <PostLoading
+          loader={loader}
+          data={data}
+          classname={cl.containerPosts}
+        />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        {limit === 0 ? (
+          <></>
+        ) : (
+          <Pagination
+            setPage={setPage}
+            count={count}
+            limit={limit}
+            page={page}
+          />
+        )}
       </div>
     </div>
   );

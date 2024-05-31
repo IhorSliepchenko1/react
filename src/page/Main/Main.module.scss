@@ -22,23 +22,6 @@
   align-items: center;
 }
 
-.searcIcon {
-  width: 25px;
-  height: 25px;
-
-  cursor: pointer;
-}
-
-.activeFocus {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border-radius: 5px;
-  padding: 3px;
-  color: white;
-  border: 1px solid teal;
-}
-
 .selectContainer {
   display: grid;
   text-align: center;
@@ -72,4 +55,19 @@
 
 .spanNumPage {
   margin-left: 5px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex-grow: 1;
+}
+
+.l_headerContainer {
+  display: flex;
+  gap: 10px;
 }

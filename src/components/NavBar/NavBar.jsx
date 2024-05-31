@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./NavBar.scss";
-import MyButton from "../UI/button/MyButton";
+import MyButton from "../UI/button/LoginButton/MyButton";
 
 const NavBar = () => {
   const logout = () => {

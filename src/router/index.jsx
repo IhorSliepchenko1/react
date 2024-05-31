@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../page/Login/Login";
 import Main from "../page/Main/Main";
-import Loader from "../components/UI/Loader/Loader";
-import { useEffect, useState } from "react";
+// import Loader from "../components/UI/Loader/Loader";
+// import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar/NavBar";
 
 const privateRoutes = [
@@ -12,19 +12,6 @@ const privateRoutes = [
 ];
 
 const PrivateComponent = () => {
-  const [loader, setLoader] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoader(true);
-    }, 1500);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  if (!loader) {
-    return <Loader />;
-  }
   return (
     <div>
       <NavBar />
