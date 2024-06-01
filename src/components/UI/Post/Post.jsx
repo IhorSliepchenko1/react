@@ -2,7 +2,7 @@ import "./Post.scss";
 
 const Post = (props) => {
   return (
-    <div className="post-wrapper">
+    <div className={`post-wrapper ${props.classNull || ""}`}>
       <div className="post-wrapper__number">
         <div className="post-wrapper__number-text">
           <span>{props.id}.</span>

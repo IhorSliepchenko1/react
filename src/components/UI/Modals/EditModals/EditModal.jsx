@@ -1,17 +1,17 @@
-import cl from "./PostModal.module.scss";
+import cl from "./EditModal.module.scss";
 import closeModal from "./../../../../assets/closeModal.png";
 import { useRef, useState } from "react";
 import InputModal from "../../input/inputModal/inputModal";
 import AlertModal from "../AlertModal/AlertModal";
 
-const PostModal = ({ count, setModal, setData }) => {
+const EditModal = ({ setModal }) => {
   const containerRef = useRef(null);
   const [alert, setAlert] = useState(false);
-  const arrLocalStorage = JSON.parse(localStorage.getItem(`newPost`)) || [];
-  localStorage.setItem(`newPost`, JSON.stringify(arrLocalStorage));
+  //   const arrLocalStorage = JSON.parse(localStorage.getItem(`newPost`)) || [];
+  //   localStorage.setItem(`newPost`, JSON.stringify(arrLocalStorage));
 
-  let newCount = JSON.parse(localStorage.getItem(`count`)) || count;
-  localStorage.setItem(`count`, JSON.stringify(newCount));
+  //   let newCount = JSON.parse(localStorage.getItem(`count`)) || count;
+  //   localStorage.setItem(`count`, JSON.stringify(newCount));
 
   const clearInputs = () => {
     for (let i = 0; i < containerRef.current.childNodes.length; i++) {
@@ -24,40 +24,39 @@ const PostModal = ({ count, setModal, setData }) => {
     console.log(`modal close`);
   };
 
-  const handleChange = () => {
-    const arr = [];
+  //   const handleChange = () => {
+  //     const arr = [];
 
-    for (let i = 0; i < containerRef.current.childNodes.length; i++) {
-      arr.push(containerRef.current.childNodes[i].value);
-    }
+  //     for (let i = 0; i < containerRef.current.childNodes.length; i++) {
+  //       arr.push(containerRef.current.childNodes[i].value);
+  //     }
 
-    if (!arr.includes("")) {
-      newCount += 1;
+  //     if (!arr.includes("")) {
+  //       newCount += 1;
 
-      arrLocalStorage.push({
-        name: arr[0],
-        email: arr[1],
-        body: arr[2],
-        postId: 0,
-        id: newCount,
-      });
+  //       arrLocalStorage.push({
+  //         name: arr[0],
+  //         email: arr[1],
+  //         body: arr[2],
+  //         postId: 0,
+  //         id: newCount,
+  //       });
 
-      localStorage.setItem(`count`, JSON.stringify(newCount));
-      localStorage.setItem(`newPost`, JSON.stringify(arrLocalStorage));
+  //       localStorage.setItem(`count`, JSON.stringify(newCount));
+  //       localStorage.setItem(`newPost`, JSON.stringify(arrLocalStorage));
 
-      setData((prev) => [...prev, ...arrLocalStorage]);
-      setModal(false);
-    } else {
-      setAlert(true);
+  //       setData((prev) => [...prev, ...arrLocalStorage]);
+  //       setModal(false);
+  //     } else {
+  //       setAlert(true);
 
-      setTimeout(() => {
-        setAlert(false);
-      }, 700);
-    }
-  };
+  //       setTimeout(() => {
+  //         setAlert(false);
+  //       }, 700);
+  //     }
+  //   };
 
   const arrPlaceholder = [`theme`, `user name`, `desc`];
-
   return (
     <>
       <div className={cl.modalContainer}>
@@ -83,11 +82,11 @@ const PostModal = ({ count, setModal, setData }) => {
 
               <button
                 className={cl.add}
-                onClick={(e) => {
-                  handleChange(e);
-                }}
+                //  onClick={(e) => {
+                //    handleChange(e);
+                //  }}
               >
-                add
+                save
               </button>
             </div>
           </div>
@@ -99,4 +98,4 @@ const PostModal = ({ count, setModal, setData }) => {
   );
 };
 
-export default PostModal;
+export default EditModal;

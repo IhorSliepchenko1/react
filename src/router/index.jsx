@@ -1,13 +1,12 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../page/Login/Login";
 import Main from "../page/Main/Main";
-// import Loader from "../components/UI/Loader/Loader";
-// import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar/NavBar";
+import UserPosts from "../page/UserPosts/UserPosts";
 
 const privateRoutes = [
   { path: "/", element: <Main /> },
-  { path: "/user", element: <h2>Comming soon</h2> },
+  { path: "/user", element: <UserPosts /> },
   { path: "*", element: <Navigate to="/" /> },
 ];
 
