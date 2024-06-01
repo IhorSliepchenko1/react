@@ -6,7 +6,7 @@ import OpenEye from "./assets/OpenEye";
 import { useState } from "react";
 import { useVerification } from "../../hook/useVerification";
 import { user } from "../data/loginData";
-import LoginModal from "../UI/Modals/LoginModal/LoginModal";
+import AlertModal from "../UI/Modals/AlertModal/AlertModal";
 
 const FormLogin = () => {
   const [open, setOpen] = useState(false);
@@ -47,7 +47,7 @@ const FormLogin = () => {
           </div>
         </form>
       </div>
-      {modal && <LoginModal text={text} />}
+      {modal && <AlertModal text={text} />}
     </>
   );
 };

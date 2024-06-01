@@ -4,12 +4,6 @@
   margin-inline: auto;
 }
 
-.containerPosts {
-  display: grid;
-  gap: 5px;
-  margin-top: 20px;
-}
-
 .numPage {
   color: white;
   width: 150px;
@@ -69,5 +63,7 @@
 
 .l_headerContainer {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 10px;
 }

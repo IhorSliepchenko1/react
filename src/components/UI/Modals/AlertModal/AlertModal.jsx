@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import cl from "./LoginModal.module.scss";
+import cl from "./AlertModal.module.scss";
 
-const LoginModal = ({ text }) => {
+const AlertModal = ({ text }) => {
   const delay = 1000;
   const interval = delay / 100;
   const [progress, setProgress] = useState(0);
@@ -29,4 +29,4 @@ const LoginModal = ({ text }) => {
   );
 };
 
-export default LoginModal;
+export default AlertModal;

@@ -1,5 +1,5 @@
 import cl from "./Main.module.scss";
-import { useEffect, useRef, useState, useCallback, useContext } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { selectData } from "../../components/data/selectData";
 import { PostService } from "../../API/PostService.js";
 import Pagination from "../../components/UI/Pagination/Pagination";
@@ -10,8 +10,7 @@ import PostLoading from "../../components/UI/PostLoading/PostLoading.jsx";
 import SearchInput from "../../components/UI/SearchInput/SearchInput.jsx";
 import PostButton from "../../components/UI/button/PostButton/PostButton.jsx";
 import PostModal from "../../components/UI/Modals/PostModal/PostModal.jsx";
-// import ProviderData from "../../context/ProviderData/ProviderData.js";
-// import DataContext from "../../context/DataContext.js";
+import Catalog from "../../components/UI/Catalog/Catalog.jsx";
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -23,11 +22,14 @@ const Main = () => {
   const { sortedPosts } = useSortedPosts(setData);
   const [modal, setModal] = useState(false);
 
-  // const valueContext = useContext(DataContext);
+  const [local, setLocal] = useState(
+    JSON.parse(localStorage.getItem(`newPost`)) || []
+  );
   const selectRef = useRef(null);
   const selectRefSort = useRef(null);
   const inputRef = useRef(null);
   const clickRef = useRef(null);
+  const containerPosts = useRef(null);
   const focus = useFocus(clickRef);
 
   const countPosts = useCallback(() => {
@@ -36,7 +38,9 @@ const Main = () => {
 
   const fetchDataLimit = async () => {
     const result = await PostService.getPosts(page, limit);
-    setData(result[0]);
+
+    setData(page === count / limit ? [...result[0], ...local] : result[0]);
+
     setCount(+result[1]);
 
     return result;
@@ -44,7 +48,9 @@ const Main = () => {
 
   const fetchDataAll = async () => {
     const result = await PostService.getAll();
-    setData(result[0].data);
+
+    setData([...result[0].data, ...local]);
+    console.log(data);
     setLimit(0);
 
     return result;
@@ -54,27 +60,35 @@ const Main = () => {
     const result = await PostService.getAll();
     let lengthValue = await input.length;
 
-    const searchResult = result[0].data.filter(
+    const searchResult = [...result[0].data, ...local].filter(
       (user) =>
         user.email.slice(0, lengthValue).toLowerCase() === input.toLowerCase()
     );
 
     setData(searchResult);
     setLimit(0);
+
+    if (inputRef.current.value === "") {
+      selectRef.current.value = "all-posts all";
+    }
+  };
+
+  const mainRender = () => {
+    return limit > 0 ? fetchDataLimit() : fetchDataAll();
   };
 
   const refreshData = () => {
     inputRef.current.value = "";
 
-    return fetchDataLimit();
+    return mainRender();
   };
 
   useEffect(() => {
     setLoader(true);
-
+    mainRender();
     setTimeout(() => {
-      limit > 0 ? fetchDataLimit() : fetchDataAll();
       selectRefSort.current.value = selectRefSort.current[0].label;
+
       setLoader(false);
     }, 1000);
   }, [page, limit]);
@@ -104,7 +118,7 @@ const Main = () => {
   return (
     <div className={cl.wrapper}>
       {modal && (
-        <PostModal onclick={() => setModal((prev) => !prev)} data={data} />
+        <PostModal setData={setData} count={count} setModal={setModal} />
       )}
       <div className={cl.container}>
         <div className={cl.header}>
@@ -119,6 +133,8 @@ const Main = () => {
 
             <PostButton setModal={setModal} data={data} />
           </div>
+
+          <Catalog containerPosts={containerPosts} />
 
           <div className={cl.selectMain}>
             <Select
@@ -149,7 +165,8 @@ const Main = () => {
         <PostLoading
           loader={loader}
           data={data}
-          classname={cl.containerPosts}
+          classname={`containerPosts`}
+          refPosts={containerPosts}
         />
       </div>
       <div style={{ marginTop: 20 }}>

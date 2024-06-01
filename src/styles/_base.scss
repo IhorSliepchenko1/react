@@ -15,3 +15,51 @@ body {
 .no-scrol {
   overflow: hidden;
 }
+
+._1fr {
+  width: 30px;
+  height: 10px;
+  background: white;
+}
+
+.containerPosts {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.container_2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+._span {
+  width: 7px;
+  height: 7px;
+  background: white;
+}
+
+.container_3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 20px;
+  gap: 1.5px;
+}
+
+.container_4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1px;
+}
+
+._btnFractionDef {
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #70d044;
+  }
+
+  &:focus {
+    background-color: #70d044;
+  }
+}
