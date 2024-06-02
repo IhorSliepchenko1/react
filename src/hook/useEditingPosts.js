@@ -18,23 +18,23 @@ export const useEditingPosts = ({ setUserPosts, userPosts, setModal, setIdPost, 
           localStorage.setItem(`newPost`, JSON.stringify(newArr));
      };
 
-     const callEdit = (indexPost, idPost) => {
+     const callEdit = async (indexPost, idPost) => {
           setModal(true);
           setIdPost(idPost);
 
-          setTimeout(() => {
-               const editedPost = userPosts.filter((item, id) => {
-                    if (id === indexPost) {
-                         return item;
-                    }
-               });
 
-               const arrName = [`name`, `email`, `body`];
+          const editedPost = await userPosts.filter((item, id) => {
+               if (id === indexPost) {
+                    return item;
+               }
+          });
 
-               arrName.map((item, index) => {
-                    containerRef.current.childNodes[index].value = editedPost[0][item];
-               });
-          }, 250);
+          const arrName = [`name`, `email`, `body`];
+
+          arrName.map((item, index) => {
+               containerRef.current.childNodes[index].value = editedPost[0][item];
+          });
+
      };
 
      const savePost = () => {
