@@ -3,10 +3,12 @@ import Login from "../page/Login/Login";
 import Main from "../page/Main/Main";
 import NavBar from "../components/NavBar/NavBar";
 import UserPosts from "../page/UserPosts/UserPosts";
+import Test from "../page/Test/CSV";
 
 const privateRoutes = [
   { path: "/", element: <Main /> },
   { path: "/user-posts", element: <UserPosts /> },
+  { path: "/test", element: <Test /> },
   { path: "*", element: <Navigate to="/" /> },
 ];
 

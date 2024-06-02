@@ -17,6 +17,9 @@ const NavBar = () => {
         <li className="li">
           <Link to="/user-posts">Your Posts</Link>
         </li>
+        <li className="li">
+          <Link to="/test">Test</Link>
+        </li>
       </ul>
 
       <MyButton text={`Logout`} onClick={logout} />
