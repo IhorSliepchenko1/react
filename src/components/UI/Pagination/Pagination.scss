@@ -1,6 +1,10 @@
 .btnContainer {
   display: flex;
   gap: 15px;
+
+  @media screen and (max-width: 500px) {
+    gap: 10px;
+  }
 }
 
 .mainSlot {
@@ -20,6 +24,12 @@
   box-shadow: 0px 0px 5px 1px rgba(255, 255, 255, 0.75);
   transition: 0.15s ease-in-out;
 
+  @media screen and (max-width: 500px) {
+    box-shadow: 0px 0px 0px 0px transparent;
+    width: 20px;
+    height: 25px;
+  }
+
   &:hover {
     background-color: teal;
     box-shadow: 0px 0px 5px 1px rgba(0, 255, 238, 0.89);
@@ -32,6 +42,10 @@
   cursor: pointer;
   border: 0;
   border-radius: 2px;
+
+  @media screen and (max-width: 500px) {
+    height: 25px;
+  }
 }
 
 .active-button {

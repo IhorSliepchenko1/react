@@ -15,10 +15,12 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   position: relative;
   top: -10%;
   background-color: white;
+  margin: 5px;
 }
 
 .cross {
@@ -54,6 +56,10 @@
   justify-content: space-between;
   padding: 10px;
   margin-top: 20px;
+
+  @media screen and (max-width: 750px) {
+    gap: 5px;
+  }
 }
 
 .clear,

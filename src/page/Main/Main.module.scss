@@ -2,6 +2,23 @@
   max-width: 1500px;
   width: 100%;
   margin-inline: auto;
+  padding: 10px;
+
+  @media screen and (max-width: 1500px) {
+    max-width: 1200px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    max-width: 1000px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    max-width: 750px;
+  }
+
+  @media screen and (max-width: 750px) {
+    max-width: 500px;
+  }
 }
 
 .numPage {
@@ -14,6 +31,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 1000px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 750px) {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
 }
 
 .selectContainer {
@@ -45,6 +73,10 @@
 .selectMain {
   display: flex;
   gap: 20px;
+  @media screen and (max-width: 750px) {
+    justify-content: center;
+    margin-bottom: 30px;
+  }
 }
 
 .spanNumPage {
@@ -66,4 +98,13 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+
+  @media screen and (max-width: 1000px) {
+    display: grid;
+    margin-bottom: 50px;
+  }
+
+  @media screen and (max-width: 750px) {
+    justify-content: center;
+  }
 }

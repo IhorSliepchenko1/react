@@ -8,9 +8,9 @@ const PostLoading = ({ loader, data, classname, refPosts }) => {
         <Loader />
       ) : (
         <div className={classname} ref={refPosts}>
-          {data.map((item) => (
+          {data.map((item, index) => (
             <Post
-              key={item.id}
+              key={index}
               id={item.id}
               name={item.name}
               email={item.email}

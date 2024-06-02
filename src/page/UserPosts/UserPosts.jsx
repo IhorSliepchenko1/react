@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import cl from "./UserPosts.module.scss";
 import Post from "../../components/UI/Post/Post";
 import Loader from "../../components/UI/Loader/Loader";
 import EditModal from "../../components/UI/Modals/EditModals/EditModal";
+import { useEditingPosts } from "../../hook/useEditingPosts";
 
 const UserPosts = () => {
   const [userPosts, setUserPosts] = useState(
@@ -10,6 +11,20 @@ const UserPosts = () => {
   );
   const [loader, setLoader] = useState(false);
   const [modal, setModal] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [idPost, setIdPost] = useState(0);
+
+  const containerRef = useRef(null);
+
+  const { delletPost, callEdit, savePost } = useEditingPosts({
+    setUserPosts,
+    userPosts,
+    setModal,
+    setIdPost,
+    setAlert,
+    idPost,
+    containerRef,
+  });
 
   useEffect(() => {
     setLoader(true);
@@ -19,30 +34,25 @@ const UserPosts = () => {
     }, 1000);
   }, []);
 
-  const delletPost = (id) => {
-    let newArr = JSON.parse(localStorage.getItem(`newPost`)).filter(
-      (item, index) => index !== id
-    );
-    setUserPosts(newArr);
-  };
-
-  useEffect(() => {
-    localStorage.setItem(`newPost`, JSON.stringify(userPosts));
-  }, [delletPost]);
-
   return (
     <>
       <div className={cl.wrapper}>
         {loader ? (
           <Loader />
-        ) : userPosts.length > 0 ? (
+        ) : userPosts && userPosts.length > 0 ? (
           userPosts.map((item, index) => (
             <div className={cl.slot} key={index}>
               <div className={cl.btn_slot}>
-                <button className={cl.delete} onClick={() => delletPost(index)}>
+                <button
+                  className={cl.delete}
+                  onClick={() => delletPost(item.id)}
+                >
                   delete
                 </button>
-                <button className={cl.edit} onClick={() => setModal(true)}>
+                <button
+                  className={cl.edit}
+                  onClick={() => callEdit(index, item.id)}
+                >
                   edit
                 </button>
               </div>
@@ -56,11 +66,20 @@ const UserPosts = () => {
             </div>
           ))
         ) : (
-          <h2 className={cl.nullPost}>To create a post, return to the main page</h2>
+          <h2 className={cl.nullPost}>
+            To create a post, return to the main page
+          </h2>
         )}
       </div>
 
-      {modal && <EditModal setModal={setModal} />}
+      {modal && (
+        <EditModal
+          setModal={setModal}
+          handleChange={() => savePost()}
+          alert={alert}
+          containerRef={containerRef}
+        />
+      )}
     </>
   );
 };

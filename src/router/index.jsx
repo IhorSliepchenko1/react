@@ -6,7 +6,7 @@ import UserPosts from "../page/UserPosts/UserPosts";
 
 const privateRoutes = [
   { path: "/", element: <Main /> },
-  { path: "/user", element: <UserPosts /> },
+  { path: "/user-posts", element: <UserPosts /> },
   { path: "*", element: <Navigate to="/" /> },
 ];
 

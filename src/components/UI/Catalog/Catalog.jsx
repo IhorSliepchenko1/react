@@ -4,7 +4,7 @@ import cl from "./Catalog.module.scss";
 
 const Catalog = ({ containerPosts }) => {
   const countFrac = (fr) => {
-    return (containerPosts.current.style = `grid-template-columns: ${fr};`);
+    containerPosts.current.style = `grid-template-columns: ${fr};`;
   };
   return (
     <div className={cl.container}>
@@ -16,15 +16,15 @@ const Catalog = ({ containerPosts }) => {
       />
       <CatalogButton
         fraction={<FractionUI count={2} />}
-        fractionFunc={(e) => countFrac(`1fr 1fr`)}
+        fractionFunc={() => countFrac(`1fr 1fr`)}
       />
       <CatalogButton
         fraction={<FractionUI count={3} />}
-        fractionFunc={(e) => countFrac(`1fr 1fr 1fr`)}
+        fractionFunc={() => countFrac(`1fr 1fr 1fr`)}
       />
       <CatalogButton
         fraction={<FractionUI count={4} />}
-        fractionFunc={(e) => countFrac(`1fr 1fr 1fr 1fr`)}
+        fractionFunc={() => countFrac(`1fr 1fr 1fr 1fr`)}
       />
     </div>
   );

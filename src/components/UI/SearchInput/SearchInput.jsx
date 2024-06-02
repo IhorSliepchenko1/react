@@ -15,7 +15,7 @@ const SearchInput = ({
     <div ref={clickRef} className={cl.activeFocus}>
       <MyInput
         type={`text`}
-        placeholder={`search by user`}
+        placeholder={`search by user name`}
         inputRef={inputRef}
         oninput={() => fetchDataSearchUser(inputRef.current.value)}
       />
